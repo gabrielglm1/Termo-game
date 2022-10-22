@@ -1,6 +1,6 @@
 CC=g++
 
-all = main
+all: main
 
 main: main.cpp
 	$(CC) main.cpp -lncurses -o main

@@ -7,9 +7,9 @@
       "request": "launch",
       "args": [],
       "stopAtEntry": false,
-      "externalConsole": false,
-      "cwd": "/home/gabrielglm1/Termo-game/Termo-game",
-      "program": "/home/gabrielglm1/Termo-game/Termo-game/build/Debug/outDebug",
+      "externalConsole": true,
+      "cwd": "z:/home/gabrielglm1/Termo-game/Termo-game",
+      "program": "z:/home/gabrielglm1/Termo-game/Termo-game/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
