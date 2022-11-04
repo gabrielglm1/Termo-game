@@ -18,28 +18,16 @@ Lucas Vasconcelos <br>
 :construction: USER STORIES :construction:
 </h4>
 
-  1- como jogador do Termo,
-  quero que o jogo me dê dicas
-  para eu poder acertar as palavras
+  1- como jogador do Termo quero que o jogo me dê dicas para eu poder acertar as palavras.
   
-  2- como usuário do jogo termo,
-  quero que seja o jogo seja simples e interessante
-  para que seja divertido
+  2- Gostaria de que, como usuário do jogo, eu possa alternar entre diferentes dificuldades, para que se torne mais desafiador.
   
-  3- como usuário do jogo termo,
-  quero que o jogo tenha diversidade de palavras
-  para que não fique enjoativo
+  3- Como jogador quero que tenha como selecionar o modo de jogo, para não ficar enjoativo
   
-  4- como jogador,
-  quero que todas as palavras sejam na minha língua
-  para que seja compreensível
+  4- Como um usuário do termo, quero que o jogo tenha efeitos sonoros e eu possa selecionar se quero ligar ou desligar, para poder aproveitar melhor a experiência
   
-  5- como jogador do termo, 
-  quero que o jogo tenha um tutorial
-  para que eu não fique perdido
+  5- como jogador do termo, quero que o jogo tenha um tutorial para que eu não fique perdido
   
-  6- como um jogador, 
-  quero que o jogo me forneça uma pontuação
-  para poder compartilhar com meus amigos
+  6- como um jogador, quero que o jogo me forneça uma pontuação para poder compartilhar com meus amigos
 
   
