@@ -1,3 +1,6 @@
+#ifndef PALAVRA_H
+#define PALAVRA_H 
+
 #include <fstream>
 #include <string>
 #include <iostream>
@@ -19,3 +22,5 @@ class Palavra{
 
     bool verifica_palavra(string word);
 };
+
+#endif
