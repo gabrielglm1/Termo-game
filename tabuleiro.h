@@ -21,6 +21,8 @@ class Tabuleiro{
         void preenche(string guess);
         int get_tentativas();
         void imprime_atual();
+        void endgame();
+        bool computa_tentativas(int n_tentativas);
 
         void imprime_tutorial();
 };

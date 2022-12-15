@@ -21,6 +21,11 @@ class Palavra{
     string get_palavra();
 
     bool verifica_palavra(string word);
+
+    bool acertou(string guess, string palavra_chave);
+    
+    
+    
 };
 
 #endif

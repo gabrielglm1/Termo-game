@@ -3,12 +3,15 @@
 #include <string>
 #include <iostream>
 #include "tabuleiro.h"
+#include "palavra.h"
+
 #define UNDERLINE "\033[4m"
 #define CLOSEUNDERLINE "\033[0m"
 
 
 using namespace std;
 int tam = 5;
+int n_tentativas = 0;
 
 Tabuleiro::Tabuleiro(int tentativas){
     this->tentativas = tentativas;
@@ -26,22 +29,27 @@ void Tabuleiro::preenche(string guess){
 
 void Tabuleiro::imprime_atual(){
     for (int i = tentativas; i > 0; i--){
-
-        // if (i < tentativas){
-
-        
         for(int j = 0; j < tam; j++){
     cout << UNDERLINE << historico[i].at(j) << CLOSEUNDERLINE<< " ";
 } 
     cout << endl;
 }
-    // else{
-    // cout << UNDERLINE << "" << CLOSEUNDERLINE<< " ";
-    // }
-    
+   
+cout << endl << endl << endl;
 }
 
+void Tabuleiro::endgame(){
+   
+    cout << "acabou o jogo" << endl;
+}
 
+bool Tabuleiro::computa_tentativas(int n_tentativas){
+    n_tentativas += 1;
+    if(n_tentativas == 6){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
 
-int Tabuleiro::get_tentativas(){}
-void Tabuleiro::imprime_tutorial(){}

@@ -54,5 +54,15 @@ bool Palavra::verifica_palavra(string word){
     }
 
 }
-    return poliglota;
+    return poliglota;   
+}
+
+bool Palavra::acertou(string guess, string palavra_chave){
+    
+    if (guess == palavra_chave){
+        return true;
+    }
+    else{
+        return false;
+    }
 }
