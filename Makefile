@@ -1,10 +1,31 @@
-all: teste.o
+# -g debug
+CC := g++
+SRCDIR := src
+TSTDIR := tests
+BUILDDIR := build
 
-teste.o: teste.cpp
-	g++ -c teste.cpp
+TARGET := cpp
+
+SRCEXT := cpp
+SOURCES := $(shell find $(SRCDIR) -type f -name *.$(SRCEXT))
+OBJECTS := $(patsubst $(SRCDIR)/%,$(BUILDDIR)/%,$(SOURCES:.$(SRCEXT)=.O))
+
+CFLAGS := -g -Wall -O3 -std=c++14
+INC := -I include/ -I third_party/
+
+$(TARGET): $(OBJECTS)
+	$(CC) $^ -o $(TARGET)
+
+$(BUILDDIR)/%.o: $(SRCDIR)/%.$(SRCEXT)
+	@mkdir -p $(@D)
+	$(CC) $(CFLAGS) $(INC) -c -o $@ $<
+
+all: main
+
+run: main
+	$(BINDIR)/main
 
 clean:
-	rm -rf *.o
+	$(RM) -r $(OBJDIR)/* $(BINDIR)/* coverage/* *.gcda *.gcno
 
-vai:
-	./teste
+.PHONY: clean coverage

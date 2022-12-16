@@ -11,71 +11,62 @@ int main(){
 
     int n_tentativas = 0;
 
-    Jogador jogadorzinho(0);
-    Tabuleiro tabuleirinho(6);
+    Jogador jogador(0);
+    Tabuleiro tabuleiro(6);
+    Palavra palavra;
 
-    Palavra palavrinha;
-    string palavra_chave = palavrinha.get_palavra();
-    palavra_chave = tabuleirinho.caps_lock(palavra_chave);
-    
-    cout << palavra_chave << endl;
+    tabuleiro.menu_principal();
 
-    //cout << palavrinha.get_palavra()<< endl;
+    char opcao; 
+    cin >> opcao;
+    int modo;
 
-    //implementar o menu principal
+    string palavra_chave = palavra.get_palavra();
+    // cout << palavra_chave << endl;
 
 
-    //  char opcao; 
-    //  cin >> opcao;
-    
-    // tabuleirinho.menu_principal();
+    switch (opcao){
 
-    //  switch (opcao)
-    //  {
-    //  case '1':
-    //     //tabuleirinho.imprime_tutorial();
-    //     break;
-    //  case '2':
+        case '1':
+            tabuleiro.imprime_tutorial();
+        case '2':
+         break;
+     }
 
-    //  default:
-    //      break;
-    //  }
-
+        modo = tabuleiro.selecionar_modo();
+        tabuleiro.imprime_atual(palavra_chave, n_tentativas);
+        cout << "Faça a primeira jogada " << endl; 
+            
 
     while(1){
         
 
         
-        string guess = jogadorzinho.jogada();
+        string guess = jogador.jogada();
         
-        if (!palavrinha.verifica_palavra(guess)){
+        if (!palavra.verifica_palavra(guess)){
 
-            tabuleirinho.imprime_atual(palavra_chave, n_tentativas);
+            tabuleiro.imprime_atual(palavra_chave, n_tentativas);
             cout << "Palavra inválida" << endl;
             }
         else{
-            tabuleirinho.preenche(guess, n_tentativas);
-            tabuleirinho.imprime_atual(palavra_chave, n_tentativas);
-            n_tentativas = tabuleirinho.computa_tentativas(n_tentativas);
-            // tabuleirinho.computa_tentativas();
+            tabuleiro.preenche(guess, n_tentativas);
+            tabuleiro.imprime_atual(palavra_chave, n_tentativas);
+            n_tentativas = tabuleiro.computa_tentativas(n_tentativas);
+            // tabuleiro.computa_tentativas();
         }
         
         cout << "Tentativas realizadas: " << n_tentativas << endl;
-        //n_tentativas = tabuleirinho.computa_tentativas(n_tentativas);
+        //n_tentativas = tabuleiro.computa_tentativas(n_tentativas);
 
-        bool win = palavrinha.acertou(guess, palavra_chave);
+        bool win = palavra.acertou(guess, palavra_chave);
         bool game_over = (n_tentativas == 6);
 
         if (win || game_over){
-            //cout << n_tentativas << endl;
-
-            tabuleirinho.endgame(win, game_over, palavra_chave);
+            tabuleiro.endgame(win, game_over, palavra_chave);
             break;
         }
     }
-
-
-    
 
 
 return 0;

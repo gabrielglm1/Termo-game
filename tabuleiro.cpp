@@ -7,6 +7,7 @@
 #include "cores.h"
 #include <algorithm> 
 
+
 #define UNDERLINE "\033[4m"
 #define CLOSEUNDERLINE "\033[0m"
 
@@ -83,7 +84,7 @@ void Tabuleiro::endgame(bool ganhou, bool game_over, string palavra_chave)
 {
     if(ganhou){
     cout << "Você acertou!" << endl;
-    cout << '\a';
+    
     }
     if(game_over)
     cout << "Game over! - A palavra correta era: " << palavra_chave << endl;
@@ -101,22 +102,49 @@ int Tabuleiro::computa_tentativas(int tentativas_restantes)
 void Tabuleiro::imprime_tutorial()
 {
 
-    cout << "Bem-vindo ao" << red << " Termo" << endl;
     cout << def << "Ao iniciar o jogo, uma palavra aleatória será gerada." << endl;
     cout << "Seu objetivo é acertar ela antes que suas tentativas " << endl;
     cout << "se esgotem. Para isso, o jogo irá fornecer dicas." << endl;
-    cout << "A cor de uma letra significa: " << endl;
+    cout << "A cor de uma letra é uma dica que significa: " << endl;
     cout << green << "Verde" << def << ", se a letra está presente na palavra e também" << endl;
     cout << "está na posição correta. " << yellow << "Amarela" << def << ", se a letra está" << endl;
     cout << "presente na palavra mas na posição errada, e branca " << endl;
     cout << "se não está presente." << endl;
+    cout << "Agora selecione um modo de jogo para começar." << endl;
+
 }
 
 void Tabuleiro::menu_principal()
 {
-
-    cout << "Menu principal" << endl;
+    cout << "Bem-vindo ao" << red << " Termo" << endl;
+    cout << def << "Menu principal" << endl;
     cout << "Selecione uma opção: " << endl;
     cout << "1. Ver tutorial" << endl;
     cout << "2. Selecionar modo e iniciar jogo" << endl;
+}
+
+int Tabuleiro::selecionar_modo(){
+    
+    int modo;
+
+    cout << "Modos de jogo: " << endl;
+    cout << "1. Termo   2. Dueto  3. Quarteto" << endl;
+    cin >> modo;
+    cout << "Modo selecionado: " << modo << endl;
+    cout << "Iniciando jogo: " << endl;
+
+    
+    return modo;
+}
+
+bool Tabuleiro::jogar_novamente(){
+    char decisao;
+    cout << "Deseja jogar novamente? (Y/N)" << endl; 
+    cin >> decisao;
+
+    if(decisao == 'Y'){
+        return true;
+    }
+    else
+        return false;
 }
