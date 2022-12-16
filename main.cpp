@@ -52,18 +52,16 @@ int main(){
 
             tabuleirinho.imprime_atual(palavra_chave, n_tentativas);
             cout << "Palavra inválida" << endl;
-
-            n_tentativas -= 1;
             }
         else{
             tabuleirinho.preenche(guess, n_tentativas);
-            
             tabuleirinho.imprime_atual(palavra_chave, n_tentativas);
+            n_tentativas = tabuleirinho.computa_tentativas(n_tentativas);
             // tabuleirinho.computa_tentativas();
         }
         
-        cout << "tentativas : " << n_tentativas << endl;
-        n_tentativas = tabuleirinho.computa_tentativas(n_tentativas);
+        cout << "Tentativas realizadas: " << n_tentativas << endl;
+        //n_tentativas = tabuleirinho.computa_tentativas(n_tentativas);
 
         bool win = palavrinha.acertou(guess, palavra_chave);
         bool game_over = (n_tentativas == 6);

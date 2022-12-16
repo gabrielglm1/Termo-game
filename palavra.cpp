@@ -11,7 +11,7 @@ Palavra::Palavra(){}
 string Palavra::get_palavra(){
 
 srand(time(0));
-auto random = rand() % 10;
+auto random = rand() % 1000;
 
 int numOfLines = 0;
 string palavra_chave;
