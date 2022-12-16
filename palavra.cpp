@@ -2,6 +2,7 @@
 #include <string>
 #include <iostream>
 #include "palavra.h"
+#include "tabuleiro.h"
 
 using namespace std;
 
@@ -31,12 +32,15 @@ return palavra_chave;
 
 bool Palavra::verifica_palavra(string word){
 
+    Tabuleiro tabuleirinho(6);
+        
     ifstream file2("dicionario.txt");
     string line2;
     bool poliglota = false;
 
     while(getline(file2, line2))
     {
+        line2 = tabuleirinho.caps_lock(line2);
     if (!line2.empty() && line2[line2.length()-1] == '\n') {
         line2.erase(line2.length()-1);
     }
@@ -60,7 +64,6 @@ bool Palavra::acertou(string guess, string palavra_chave){
     if (guess == palavra_chave){
         return true;
     }
-    else{
+    else
         return false;
-    }
 }

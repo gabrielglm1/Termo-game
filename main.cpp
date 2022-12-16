@@ -4,7 +4,6 @@
 #include "jogador.h"
 #include "palavra.h"
 #include "tabuleiro.h"
-#include "cores.h"
 
 using namespace std;
 
@@ -16,12 +15,12 @@ int main(){
     Tabuleiro tabuleirinho(6);
 
     Palavra palavrinha;
-    string palavra_chaves = palavrinha.get_palavra();
+    string palavra_chave = palavrinha.get_palavra();
+    palavra_chave = tabuleirinho.caps_lock(palavra_chave);
     
-    
-    cout << palavra_chaves << endl;
+    cout << palavra_chave << endl;
 
-    cout << palavrinha.get_palavra()<< endl;
+    //cout << palavrinha.get_palavra()<< endl;
 
     //implementar o menu principal
 
@@ -51,22 +50,28 @@ int main(){
         
         if (!palavrinha.verifica_palavra(guess)){
 
+            tabuleirinho.imprime_atual(palavra_chave, n_tentativas);
             cout << "Palavra inválida" << endl;
-            tabuleirinho.imprime_atual(palavra_chaves, n_tentativas);
+
+            n_tentativas -= 1;
             }
         else{
             tabuleirinho.preenche(guess, n_tentativas);
             
-            tabuleirinho.imprime_atual(palavra_chaves, n_tentativas);
+            tabuleirinho.imprime_atual(palavra_chave, n_tentativas);
             // tabuleirinho.computa_tentativas();
         }
         
-        //cout << "tentativas : " << n_tentativas << endl;
+        cout << "tentativas : " << n_tentativas << endl;
         n_tentativas = tabuleirinho.computa_tentativas(n_tentativas);
 
-        if (palavrinha.acertou(guess, palavra_chaves) || n_tentativas == 6){
-            cout << n_tentativas << endl;
-            tabuleirinho.endgame();
+        bool win = palavrinha.acertou(guess, palavra_chave);
+        bool game_over = (n_tentativas == 6);
+
+        if (win || game_over){
+            //cout << n_tentativas << endl;
+
+            tabuleirinho.endgame(win, game_over, palavra_chave);
             break;
         }
     }

@@ -21,7 +21,8 @@ class Tabuleiro{
         void menu_principal();
         int get_tentativas();
         void imprime_atual(string palavra_chave, int tentativas_realizadas);
-        void endgame();
+        string caps_lock(std::string& str);
+        void endgame(bool win_condiditon, bool game_over, string palavra_chave);
         int computa_tentativas(int n_tentativas);
         void dicas(string palavra_chave, string guess);
         void imprime_tutorial();

@@ -5,6 +5,7 @@
 #include "tabuleiro.h"
 #include "palavra.h"
 #include "cores.h"
+#include <algorithm> 
 
 #define UNDERLINE "\033[4m"
 #define CLOSEUNDERLINE "\033[0m"
@@ -15,8 +16,14 @@ Color::Modifier red(Color::FG_BRIGHT_RED);
 Color::Modifier def(Color::FG_DEFAULT);
 
 using namespace std;
+
 int tam = 5;
 
+string Tabuleiro::caps_lock(std::string& str)
+{
+    std::transform(str.begin(), str.end(), str.begin(), ::toupper);
+    return str;
+}
 
 Tabuleiro::Tabuleiro(int tentativas)
 {
@@ -30,6 +37,7 @@ Tabuleiro::Tabuleiro(int tentativas)
 
 void Tabuleiro::preenche(string guess, int tentativas_realizadas)
 {   
+    guess = caps_lock(guess);
 
    // historico.insert(historico.begin(), guess);
     historico.insert(historico.begin() + tentativas_realizadas, guess);
@@ -71,10 +79,15 @@ void Tabuleiro::imprime_atual(string palavra_chave, int tentativas_realizadas)
          << endl;
 }
 
-void Tabuleiro::endgame()
+void Tabuleiro::endgame(bool ganhou, bool game_over, string palavra_chave)
 {
-
+    if(ganhou){
     cout << "Você acertou!" << endl;
+    cout << '\a';
+    }
+    if(game_over)
+    cout << "Game over! - A palavra correta era: " << palavra_chave << endl;
+
 }
 
 int Tabuleiro::computa_tentativas(int tentativas_restantes)
