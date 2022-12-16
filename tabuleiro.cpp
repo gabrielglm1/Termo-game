@@ -106,9 +106,9 @@ void Tabuleiro::imprime_tutorial()
     cout << "Seu objetivo é acertar ela antes que suas tentativas " << endl;
     cout << "se esgotem. Para isso, o jogo irá fornecer dicas." << endl;
     cout << "A cor de uma letra é uma dica que significa: " << endl;
-    cout << green << "Verde" << def << ", se a letra está presente na palavra e também" << endl;
-    cout << "está na posição correta. " << yellow << "Amarela" << def << ", se a letra está" << endl;
-    cout << "presente na palavra mas na posição errada, e branca " << endl;
+    cout << green << "VERDE" << def << ", se a letra está presente na palavra e também" << endl;
+    cout << "está na posição correta. " << yellow << "AMARELA" << def << ", se a letra está" << endl;
+    cout << "presente na palavra mas na posição errada, e BRANCA " << endl;
     cout << "se não está presente." << endl;
     cout << "Agora selecione um modo de jogo para começar." << endl;
 

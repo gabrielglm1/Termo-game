@@ -62,7 +62,12 @@ int main(){
         bool win = palavra.acertou(guess, palavra_chave);
         bool game_over = (n_tentativas == 6);
 
+        if(win){
+            jogador.atualiza_pontuacao();
+        }
+
         if (win || game_over){
+            cout << "Placar: " << jogador.get_pontuacao() << endl;
             tabuleiro.endgame(win, game_over, palavra_chave);
             break;
         }

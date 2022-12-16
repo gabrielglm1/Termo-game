@@ -25,6 +25,14 @@ class Jogador{
         * @brief Retorna o palpite realizado.
         */
         string get_guess();
+        /**
+        * @brief Aumenta a pontuação do jogador em um quando ele acerta.
+        */
+        void atualiza_pontuacao();
+        /**
+        * @brief Retorna o placar atual do jogador.
+        */
+        int get_pontuacao();
 };
 
 #endif
