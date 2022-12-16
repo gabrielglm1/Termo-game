@@ -5,8 +5,6 @@
 
 using namespace std;
 
-
-
 Palavra::Palavra(){}
 
 string Palavra::get_palavra(){

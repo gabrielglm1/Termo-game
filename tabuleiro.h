@@ -17,14 +17,15 @@ class Tabuleiro{
     public:
 
         Tabuleiro(int tentativas);
-
-        void preenche(string guess);
+        void preenche(string guess, int tentativas_realizadas);
+        void menu_principal();
         int get_tentativas();
-        void imprime_atual();
+        void imprime_atual(string palavra_chave, int tentativas_realizadas);
         void endgame();
-        bool computa_tentativas(int n_tentativas);
-
+        int computa_tentativas(int n_tentativas);
+        void dicas(string palavra_chave, string guess);
         void imprime_tutorial();
+        void get_tentativa(); 
 };
 
 #endif
