@@ -89,6 +89,7 @@ void Tabuleiro::endgame(bool ganhou, bool game_over, string palavra_chave)
     if(game_over)
     cout << "Game over! - A palavra correta era: " << palavra_chave << endl;
 
+
 }
 
 int Tabuleiro::computa_tentativas(int tentativas_restantes)
@@ -148,3 +149,7 @@ bool Tabuleiro::jogar_novamente(){
     else
         return false;
 }
+
+// void Tabuleiro::limpa_tabuleiro(){
+//     for(historico.begin(), historico.end(), )
+// }

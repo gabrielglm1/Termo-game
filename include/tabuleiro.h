@@ -79,6 +79,9 @@ public:
      * @brief Retorna true se o usuário deseja iniciar um novo jogo.
      */
     bool jogar_novamente();
+
+    void limpa_tabuleiro();
+    
 };
 
 #endif
