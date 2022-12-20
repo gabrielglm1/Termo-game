@@ -56,7 +56,7 @@ public:
      * @param palavra_chave Se o usuário perdeu, informa qual era a resposta.
      *
      */
-    void endgame(bool win_condiditon, bool game_over, string palavra_chave);
+    void endgame(bool win_condiditon, string palavra_chave);
     /**
      * @brief Atualiza as tentativas realizadas.
      * @param n_tentativas Tentativas realizadas até o momento.

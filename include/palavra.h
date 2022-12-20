@@ -34,6 +34,8 @@ public:
          * @param palavra_chave A qual deve ser adivinhada.
          */
     bool acertou(string guess, string palavra_chave);
+
+    void add_palavra(string ausente);
 };
 
 #endif

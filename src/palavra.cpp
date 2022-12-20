@@ -67,3 +67,24 @@ bool Palavra::acertou(string guess, string palavra_chave){
     else
         return false;
 }
+    void Palavra::add_palavra(string ausente){
+
+        std::cout << "Deseja adicionar essa palavra ao banco de palavras? (Y/N)" << endl;
+
+        string option;
+        std::cin >> option;
+        
+        if(option == "Y"){
+    
+            ofstream outfile;
+            outfile.open("dicionario.txt", std::ios_base::app); // append instead of overwrite
+            ausente += "\n";
+            outfile << ausente ;
+            cout << "Palavra adicionada com sucesso" << endl;
+
+        }   
+
+        std::cout << "-----------------------------------------------------------" << endl;
+
+    }
+    

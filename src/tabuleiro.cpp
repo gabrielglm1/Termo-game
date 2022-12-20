@@ -80,48 +80,51 @@ void Tabuleiro::imprime_atual(string palavra_chave, int tentativas_realizadas)
          << endl;
 }
 
-void Tabuleiro::endgame(bool ganhou, bool game_over, string palavra_chave)
+void Tabuleiro::endgame(bool ganhou, string palavra_chave)
 {
     if(ganhou){
     cout << "Você acertou!" << endl;
     
     }
-    if(game_over)
-    cout << "Game over! - A palavra correta era: " << palavra_chave << endl;
-
+    else
+    cout << "Game over! - A palavra correta era: " << green << palavra_chave << def << endl;
 
 }
 
-int Tabuleiro::computa_tentativas(int tentativas_restantes)
+int Tabuleiro::computa_tentativas(int tentativas)
 {   
-    //cout << "A função recebeu como " << tentativas_restantes << endl;
-    tentativas_restantes = tentativas_restantes + 1;
-    //cout << "NA FUNÇÃO:" << tentativas_restantes << endl;
-    return tentativas_restantes;
+    tentativas = tentativas + 1;
+    return tentativas;
 }
 
 void Tabuleiro::imprime_tutorial()
 {
 
-    cout << def << "Ao iniciar o jogo, uma palavra aleatória será gerada." << endl;
-    cout << "Seu objetivo é acertar ela antes que suas tentativas " << endl;
-    cout << "se esgotem. Para isso, o jogo irá fornecer dicas." << endl;
-    cout << "A cor de uma letra é uma dica que significa: " << endl;
-    cout << green << "VERDE" << def << ", se a letra está presente na palavra e também" << endl;
-    cout << "está na posição correta. " << yellow << "AMARELA" << def << ", se a letra está" << endl;
-    cout << "presente na palavra mas na posição errada, e BRANCA " << endl;
+    cout << def << "Ao iniciar o jogo, uma palavra aleatória será gerada. ";
+    cout << "Seu objetivo é acertar ela antes que suas tentativas ";
+    cout << "se esgotem. Para isso, o jogo irá fornecer dicas. " << endl;
+    cout << "A cor de uma letra é uma dica que significa: ";
+    cout << green << "VERDE" << def << ", se a letra está presente na palavra e também ";
+    cout << "está na posição correta. " << yellow << "AMARELA" << def << ", se a letra está presente" << endl;
+    cout << "na palavra mas na posição errada, e BRANCA ";
     cout << "se não está presente." << endl;
     cout << "Agora selecione um modo de jogo para começar." << endl;
+    cout << "-----------------------------------------------------------" << endl;
+
 
 }
 
+
+
 void Tabuleiro::menu_principal()
-{
-    cout << "Bem-vindo ao" << red << " Termo" << endl;
-    cout << def << "Menu principal" << endl;
+{   
+    cout << def << "-----------------------------------------------------------" << endl;
+    cout << "Menu principal" << endl;
     cout << "Selecione uma opção: " << endl;
     cout << "1. Ver tutorial" << endl;
     cout << "2. Selecionar modo e iniciar jogo" << endl;
+    cout << "-----------------------------------------------------------" << endl;
+
 }
 
 int Tabuleiro::selecionar_modo(){
@@ -150,6 +153,3 @@ bool Tabuleiro::jogar_novamente(){
         return false;
 }
 
-// void Tabuleiro::limpa_tabuleiro(){
-//     for(historico.begin(), historico.end(), )
-// }
