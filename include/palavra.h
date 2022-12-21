@@ -5,6 +5,7 @@
 #include <string>
 #include <iostream>
 #include "jogador.h"
+#include <vector>
 
 using namespace std;
         /**
@@ -17,13 +18,14 @@ class Palavra
 {
 private:
     string palavra;
+    vector <string> palavras_chave;
 
 public:
     Palavra();
         /**
          * @brief Retorna a palavra atual.
          */
-    string get_palavra();
+    vector<string> get_palavra();
         /**
          * @brief Verifica se a palavra que o usuário digitou existe no dicionário do jogo.
          */

@@ -8,13 +8,18 @@ using namespace std;
 
 Palavra::Palavra(){}
 
-string Palavra::get_palavra(){
+vector<string> Palavra::get_palavra(){
 
 srand(time(0));
-auto random = rand() % 1000;
-
+auto random = rand() % 2935;
+auto random2 = rand() % 2935;
+auto random3 = rand() % 2935;
+auto random4 = rand() % 2935;
 int numOfLines = 0;
-string palavra_chave;
+
+
+string palavra_chave, palavra_chave2, palavra_chave3, palavra_chave4;
+
 
 ifstream file("dicionario.txt");
     string line;
@@ -24,10 +29,23 @@ while(getline(file, line))
     ++numOfLines;
     if(numOfLines == random)
     {       
-        palavra_chave = line;
+        palavras_chave.push_back(line);
+        }
+    if(numOfLines == random2)
+    {       
+        palavras_chave.push_back(line);
+        }
+    if(numOfLines == random3)
+    {       
+       palavras_chave.push_back(line);
+    }
+    if(numOfLines == random4)
+
+    {   
+        palavras_chave.push_back(line);
         }
     }
-return palavra_chave;
+return palavras_chave;
 }
 
 bool Palavra::verifica_palavra(string word){

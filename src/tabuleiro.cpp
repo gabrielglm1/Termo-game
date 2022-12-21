@@ -6,6 +6,7 @@
 #include "palavra.h"
 #include "cores.h"
 #include <algorithm> 
+#include <vector>
 
 
 #define UNDERLINE "\033[4m"
@@ -45,18 +46,109 @@ void Tabuleiro::preenche(string guess, int tentativas_realizadas)
     historico.erase(historico.end());
 }
 
-void Tabuleiro::imprime_atual(string palavra_chave, int tentativas_realizadas)
-{   
+void Tabuleiro::imprime_atual(vector <string> palavras_chaves, int tentativas_realizadas, int modo)
+{   Palavra palavrinha;
+
     for (int i = 0; i < tentativas; i++)
     {
+        
         for (int j = 0; j < tam; j++)
         {
-         size_t found = palavra_chave.find(historico[i].at(j));
+         size_t found = palavras_chaves[0].find(historico[i].at(j));
 
         //checa se tá na pos correta
 
 
-            if (palavra_chave.at(j) == historico[i].at(j))
+            if (palavras_chaves[0].at(j) == historico[i].at(j))
+            {
+                
+                cout << green << UNDERLINE << historico[i].at(j) << CLOSEUNDERLINE << " ";
+            }
+                else if (found != string::npos)
+            {
+                cout << yellow << UNDERLINE << historico[i].at(j) << CLOSEUNDERLINE << " ";
+            }
+            else 
+            {
+                cout << def << UNDERLINE << historico[i].at(j) << CLOSEUNDERLINE << " ";
+            }
+
+            
+        }
+        if (modo == 1 ){
+                cout << endl;
+            }
+        // Caso for dueto ou quarteto
+
+        if(modo > 1){
+        cout << "     " ;
+
+         for (int j = 0; j < tam; j++)
+        {
+         size_t found = palavras_chaves[1].find(historico[i].at(j));
+
+        //checa se tá na pos correta
+
+        
+            if (palavras_chaves[1].at(j) == historico[i].at(j))
+            {
+                
+                cout << green << UNDERLINE << historico[i].at(j) << CLOSEUNDERLINE << " ";
+            }
+                else if (found != string::npos)
+            {
+                cout << yellow << UNDERLINE << historico[i].at(j) << CLOSEUNDERLINE << " ";
+            }
+            else 
+            {
+                cout << def << UNDERLINE << historico[i].at(j) << CLOSEUNDERLINE << " ";
+            }
+
+        
+        }
+    if (modo == 2 ){
+                cout << endl;
+            }
+    }
+    if(modo > 2){
+        cout << "     " ;
+  
+         for (int j = 0; j < tam; j++)
+        {
+         size_t found = palavras_chaves[2].find(historico[i].at(j));
+
+        //checa se tá na pos correta
+
+        
+            if (palavras_chaves[2].at(j) == historico[i].at(j))
+            {
+                
+                cout << green << UNDERLINE << historico[i].at(j) << CLOSEUNDERLINE << " ";
+            }
+                else if (found != string::npos)
+            {
+                cout << yellow << UNDERLINE << historico[i].at(j) << CLOSEUNDERLINE << " ";
+            }
+            else 
+            {
+                cout << def << UNDERLINE << historico[i].at(j) << CLOSEUNDERLINE << " ";
+            }
+
+        
+        }
+
+    }
+    if(modo > 2){
+        cout << "     " ;
+ 
+         for (int j = 0; j < tam; j++)
+        {
+         size_t found = palavras_chaves[3].find(historico[i].at(j));
+
+        //checa se tá na pos correta
+
+        
+            if (palavras_chaves[3].at(j) == historico[i].at(j))
             {
                 
                 cout << green << UNDERLINE << historico[i].at(j) << CLOSEUNDERLINE << " ";
@@ -73,6 +165,7 @@ void Tabuleiro::imprime_atual(string palavra_chave, int tentativas_realizadas)
         
         }
         cout << endl;
+    }
     }
     
     cout << endl

@@ -43,7 +43,7 @@ public:
      * @param tentativas_realizadas Nº de tentativas que já foram feitas.
      *
      */
-    void imprime_atual(string palavra_chave, int tentativas_realizadas);
+    void imprime_atual(vector <string> palavras_chaves, int tentativas_realizadas, int modo);
     /**
      * @brief Converte textos para caixa alta.
      *
