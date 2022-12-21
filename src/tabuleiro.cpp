@@ -179,17 +179,30 @@ void Tabuleiro::imprime_atual(vector <string> palavras_chaves, int tentativas_re
          << endl;
 }
 
-bool Tabuleiro::endgame(int acertos, vector<string> palavras_chaves, int modo)
+bool Tabuleiro::endgame(int acertos, vector<string> palavras_chaves, int modo, int tentativas)
 {
     if((modo == 3 && acertos == 4) || (modo == 2 && acertos == 2) || (modo == 1 && acertos == 1)){
     cout << "Você ganhou!" << endl;
     return true;
     }
-    else{
-    return false;
-    }
-    // cout << "Game over! - A palavra correta era: " << green << palavra_chave << def << endl;
+    else if (tentativas ==  6){
+        switch (modo)
+        {
+        case 1:
+            cout << "Game over! - A palavra correta era: " << green << palavras_chaves[0] << def << "." << endl;
+            break;
+        case 2:
+            cout << "Game over! - As palavras corretam eram: " << green << palavras_chaves[0] << def << " e " << green << palavras_chaves[1] << "."<< endl;
+            break;
 
+        case 3:
+            cout << "Game over! - As palavras corretam eram: " << green << palavras_chaves[0] << def << ", " << green << palavras_chaves[1] << def << ", " << green << palavras_chaves[2] << def << " e " << green << palavras_chaves[1] << def << "." <<endl;
+            break;
+        default:
+            break;
+        }
+    return false;
+    } else return false;
 }
 
 int Tabuleiro::computa_tentativas(int tentativas)

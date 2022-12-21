@@ -27,10 +27,10 @@ int main(){
         bool tab1 = false, tab2 = false, tab3 = false, tab4 = false;
         
 
-        // cout << "A palavra1 é: " << palavras_chaves[0] <<endl;
-        // cout << "A palavra2 é: " << palavras_chaves[1] <<endl;
-        // cout << "A palavra3 é: " << palavras_chaves[2] <<endl;
-        // cout << "A palavra4 é: " << palavras_chaves[3] <<endl;
+        cout << "A palavra1 é: " << palavras_chaves[0] <<endl;
+        cout << "A palavra2 é: " << palavras_chaves[1] <<endl;
+        cout << "A palavra3 é: " << palavras_chaves[2] <<endl;
+        cout << "A palavra4 é: " << palavras_chaves[3] <<endl;
 
         tabuleiro.menu_principal();
 
@@ -90,8 +90,9 @@ int main(){
                 }  
         }
         }
-        if (tabuleiro.endgame(acertos, palavras_chaves, modo)){
+        if (tabuleiro.endgame(acertos, palavras_chaves, modo, n_tentativas)){
             jogador.atualiza_pontuacao();
+            cout << "Placar: " << jogador.get_pontuacao() << endl;
             break;
         }
 
@@ -101,8 +102,6 @@ int main(){
         }
 
         cout << "Faça uma nova tentativa: " << endl;
-
-        
         }
 
         if(!tabuleiro.jogar_novamente()){

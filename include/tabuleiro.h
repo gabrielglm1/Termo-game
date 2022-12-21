@@ -56,7 +56,7 @@ public:
      * @param palavra_chave Se o usuário perdeu, informa qual era a resposta.
      *
      */
-    bool endgame(int acertos, vector<string> palavras_chaves, int modo);
+    bool endgame(int acertos, vector<string> palavras_chaves, int modo, int tentativas);
     /**
      * @brief Atualiza as tentativas realizadas.
      * @param n_tentativas Tentativas realizadas até o momento.
