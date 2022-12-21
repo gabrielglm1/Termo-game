@@ -21,15 +21,16 @@ int main(){
     while(1){
         
         Tabuleiro tabuleiro(6);
-        int n_tentativas = 0;
+        int n_tentativas = 0, acertos = 0;
         Palavra palavra;
         vector <string> palavras_chaves = palavra.get_palavra();
+        bool tab1 = false, tab2 = false, tab3 = false, tab4 = false;
         
 
-        cout << "A palavra1 é: " << palavras_chaves[0] <<endl;
-        cout << "A palavra2 é: " << palavras_chaves[1] <<endl;
-        cout << "A palavra3 é: " << palavras_chaves[2] <<endl;
-        cout << "A palavra4 é: " << palavras_chaves[3] <<endl;
+        // cout << "A palavra1 é: " << palavras_chaves[0] <<endl;
+        // cout << "A palavra2 é: " << palavras_chaves[1] <<endl;
+        // cout << "A palavra3 é: " << palavras_chaves[2] <<endl;
+        // cout << "A palavra4 é: " << palavras_chaves[3] <<endl;
 
         tabuleiro.menu_principal();
 
@@ -63,28 +64,45 @@ int main(){
             palavra.add_palavra(guess);  
         }
         else{
-            tabuleiro.preenche(guess, n_tentativas);
+            tabuleiro.preenche(guess, n_tentativas, tab1, tab2, tab3, tab4);
             tabuleiro.imprime_atual(palavras_chaves, n_tentativas, modo);
             n_tentativas = tabuleiro.computa_tentativas(n_tentativas);
+
         }
         
+
         cout << "Tentativas realizadas: " << n_tentativas << endl;
-        cout << "Faça uma nova tentativa: " << endl;
 
-        if (palavra.acertou(guess, palavras_chaves[0]) && (n_tentativas < 6)){
-            cout << "Pontuação antes: " << jogador.get_pontuacao() << endl;
+    for (int i = 0; i < 4; i++){
+            if (palavra.acertou(guess, palavras_chaves[i]) && (n_tentativas < 6)){
+                acertos+=1; 
+                if (i == 0){
+                    tab1 = true;
+                }  
+                if (i == 1){
+                    tab2 = true;
+                }  
+                if (i == 2){
+                    tab3 = true;
+                }  
+                if (i == 3){
+                    tab4 = true;
+                }  
+        }
+        }
+        if (tabuleiro.endgame(acertos, palavras_chaves, modo)){
             jogador.atualiza_pontuacao();
-            cout << "Placar: " << jogador.get_pontuacao() << endl;
-
-            tabuleiro.endgame(true, palavras_chaves[0]);
             break;
-            
-        }   else if (n_tentativas == 6){
-                tabuleiro.endgame(false, palavras_chaves[0]);
-                cout << "Placar: " << jogador.get_pontuacao() << endl;
-                break;
         }
 
+        if (n_tentativas == 6){
+        cout << "Placar: " << jogador.get_pontuacao() << endl;
+        break;
+        }
+
+        cout << "Faça uma nova tentativa: " << endl;
+
+        
         }
 
         if(!tabuleiro.jogar_novamente()){
