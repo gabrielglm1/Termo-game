@@ -1,108 +1,137 @@
 #include <fstream>
 #include <string>
 #include <iostream>
+#include <vector>
+#include <algorithm>
 #include "palavra.h"
 #include "tabuleiro.h"
 
 using namespace std;
 
-Palavra::Palavra(){}
+Palavra::Palavra() {}
 
-vector<string> Palavra::get_palavra(){
+int TAM_DICIONARIO = 2935; 
 
-srand(time(0));
-auto random = rand() % 2935;
-auto random2 = rand() % 2935;
-auto random3 = rand() % 2935;
-auto random4 = rand() % 2935;
-int numOfLines = 0;
+vector<string> Palavra::get_palavra()
+{
 
+    // int num_linhas = 0;
 
-string palavra_chave, palavra_chave2, palavra_chave3, palavra_chave4;
+    // ifstream ifile("dicionario.txt");
+    // while(getline(file, line)){
+    //     ++num_linhas;
+    //     }
 
+    // ifile.clear();
+    // ifile.seekg(0);
 
-ifstream file("dicionario.txt");
+    // srand(time(0));
+
+    // int aleatorio[4];
+
+    // for(int i = 0; i < 4; i++){
+    //     aleatorio[i] = rand() % num_linhas;
+
+    // }
+    // for(int i = 0; i < 4; i++){
+    //     cout << "Random" << i << ": " << aleatorio[i] << endl;
+
+    // }
+        int random1, random2, random3, random4;
+
+    srand(time(0));
+
+        while(1){
+            random1 = rand() % TAM_DICIONARIO;
+            random2 = rand() % TAM_DICIONARIO;
+            random3 = rand() % TAM_DICIONARIO;
+            random4 = rand() % TAM_DICIONARIO;
+
+            if(random1 != random2 != random3 != random4){
+                break;
+        } 
+        }
+        
+    int num_linhas = 0;
+    ifstream file("dicionario.txt");
     string line;
 
+    string palavra_chave, palavra_chave2, palavra_chave3, palavra_chave4;
 while(getline(file, line))
     {
-    ++numOfLines;
-    if(numOfLines == random)
-    {       
+    ++num_linhas;
+    if(num_linhas == random1)
+    {
         palavras_chave.push_back(line);
         }
-    if(numOfLines == random2)
-    {       
+    if(num_linhas == random2)
+    {
         palavras_chave.push_back(line);
         }
-    if(numOfLines == random3)
-    {       
+    if(num_linhas == random3)
+    {
        palavras_chave.push_back(line);
     }
-    if(numOfLines == random4)
+    if(num_linhas == random4)
 
-    {   
+    {
         palavras_chave.push_back(line);
         }
     }
-return palavras_chave;
+    return palavras_chave;
 }
 
-bool Palavra::verifica_palavra(string word){
-
-    Tabuleiro tabuleirinho(6);
-        
+bool Palavra::verifica_palavra(string guess)
+{
     ifstream file2("dicionario.txt");
     string line2;
-    bool poliglota = false;
+    bool achou = false;
 
-    while(getline(file2, line2))
+    while (getline(file2, line2))
     {
-        line2 = tabuleirinho.caps_lock(line2);
-    if (!line2.empty() && line2[line2.length()-1] == '\n') {
-        line2.erase(line2.length()-1);
-    }
-     
-    if(line2 == word)
-    {       
-        poliglota = true;
-        break;
-    }
-    else{
-        poliglota = false;
-        
-    }
+        if (!line2.empty() && line2[line2.length() - 1] == '\n')
+        {
+            line2.erase(line2.length() - 1);
+        }
 
-}
-    return poliglota;   
+        if (line2 == guess)
+        {
+            achou = true;
+            break;
+        }
+        else
+        {
+            achou = false;
+        }
+    }
+    return achou;
 }
 
-bool Palavra::acertou(string guess, string palavra_chave){
-    
+bool Palavra::acertou(string guess, string palavra_chave)
+{
     if (guess == palavra_chave){
         return true;
-    }
-    else
-        return false;
+
+    } else return false;
 }
-    void Palavra::add_palavra(string ausente){
+void Palavra::add_palavra(string ausente)
+{
 
-        std::cout << "Deseja adicionar essa palavra ao banco de palavras? (Y/N)" << endl;
+    std::cout << "Deseja adicionar essa palavra ao banco de palavras? (Y/N)" << endl;
 
-        string option;
-        std::cin >> option;
-        
-        if(option == "Y"){
-    
-            ofstream outfile;
-            outfile.open("dicionario.txt", std::ios_base::app); // append instead of overwrite
-            ausente += "\n";
-            outfile << ausente ;
-            cout << "Palavra adicionada com sucesso" << endl;
+    string option;
+    std::cin >> option;
 
-        }   
-
-        std::cout << "-----------------------------------------------------------" << endl;
-
+    if (option == "Y")
+    {
+        ofstream outfile;
+        outfile.open("dicionario.txt", std::ios_base::app);
+        ausente += "\n";
+        outfile << ausente;
+        cout << "Palavra adicionada com sucesso" << endl;
+        //aumenta o tamanho do dicionário, pois quando for jogar novamente, haverá chances da nova palavra ser incluída no sorteio. 
+        TAM_DICIONARIO++;
     }
-    
+
+    std::cout << "-----------------------------------------------------------" << endl;
+}

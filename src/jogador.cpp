@@ -1,13 +1,14 @@
 #include "jogador.h"
 #include <string>
 #include <iostream>
+#include "excecoes.h"
 
 using namespace std;
-
-Jogador::Jogador(int pontuacao)
+Jogador::Jogador()
 {
-    _pontuacao = pontuacao;
+    _pontuacao = 0;
 }
+
 string Jogador::jogada()
 {
 

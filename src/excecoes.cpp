@@ -9,3 +9,7 @@ const char* ErroDeJogoExcecao::what() const noexcept {
 const char* ErroDeStringExcecao::what() const noexcept {
   return "Essa entrada é inválida!";
 }
+
+const char* ErroConstrutorInvalido::what() const noexcept {
+  return "Essa inicialização não é permitida!";
+}

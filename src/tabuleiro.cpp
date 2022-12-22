@@ -5,9 +5,8 @@
 #include "tabuleiro.h"
 #include "palavra.h"
 #include "cores.h"
-#include <algorithm> 
+#include <algorithm>
 #include <vector>
-
 
 #define UNDERLINE "\033[4m"
 #define CLOSEUNDERLINE "\033[0m"
@@ -19,206 +18,191 @@ Color::Modifier def(Color::FG_DEFAULT);
 
 using namespace std;
 
+//Todas as palavras no jogo tem 6 letras.
 int tamanho_palavra = 5;
 
-string Tabuleiro::caps_lock(std::string& str)
+string Tabuleiro::caps_lock(std::string &str)
 {
     std::transform(str.begin(), str.end(), str.begin(), ::toupper);
     return str;
+}
+Tabuleiro::Tabuleiro(){
+    tentativas = 6;
 }
 
 Tabuleiro::Tabuleiro(int tentativas)
 {
     this->tentativas = tentativas;
 
-    for (int i = 0; i <= 4*tentativas; i++)
+    for (int i = 0; i <= 4 * tentativas; i++)
     {
         historico.push_back("     ");
     }
 }
 
 void Tabuleiro::preenche(string guess, int tentativas_realizadas, bool tab1, bool tab2, bool tab3, bool tab4, int num_chutes)
-{   
-    guess = caps_lock(guess);
-
-   // historico.insert(historico.begin(), guess);
-    for (int i = 0; i < 4; i++){
-    if ((!tab1 && (i == 0)) || (!tab2 && (i == 1)) || (!tab3 && (i == 2)) || (!tab4 && (i == 3))){
-    //historico.insert(historico.begin() + (tam*i) + tentativas_realizadas, guess);
-    historico[(i*num_chutes)+tentativas_realizadas].replace(historico[(i*num_chutes)+tentativas_realizadas].begin(),historico[(i*num_chutes)+tentativas_realizadas].end(),guess);
+{
+    for (int i = 0; i < 4; i++)
+    {
+        if ((!tab1 && (i == 0)) || (!tab2 && (i == 1)) || (!tab3 && (i == 2)) || (!tab4 && (i == 3)))
+        {
+            historico[(i * num_chutes) + tentativas_realizadas].replace(historico[(i * num_chutes) + tentativas_realizadas].begin(), historico[(i * num_chutes) + tentativas_realizadas].end(), guess);
+        }
     }
-    //historico.erase(historico.end());   
-    }
-
 }
 
-void Tabuleiro::imprime_atual(vector <string> palavras_chaves, int tentativas_realizadas, int modo)
-{   Palavra palavrinha;
+void Tabuleiro::imprime_atual(vector<string> palavras_chaves, int tentativas_realizadas, int modo)
+{
+    Palavra palavrinha;
 
     for (int i = 0; i < tentativas; i++)
     {
-        
+
         for (int j = 0; j < tamanho_palavra; j++)
         {
-         size_t found = palavras_chaves[0].find(historico[i].at(j));
-
-        //checa se tá na pos correta
-
+            size_t found = palavras_chaves[0].find(historico[i].at(j));
 
             if (palavras_chaves[0].at(j) == historico[i].at(j))
             {
-                
                 cout << green << UNDERLINE << historico[i].at(j) << CLOSEUNDERLINE << " ";
             }
-                else if (found != string::npos)
+            else if (found != string::npos)
             {
                 cout << yellow << UNDERLINE << historico[i].at(j) << CLOSEUNDERLINE << " ";
             }
-            else 
+            else
             {
                 cout << def << UNDERLINE << historico[i].at(j) << CLOSEUNDERLINE << " ";
             }
-
-            
         }
-        if (modo == 1 ){
-                cout << endl;
-            }
+        if (modo == 1)
+        {
+            cout << endl;
+        }
         // Caso for dueto ou quarteto
         int tam = 6;
-        if(modo > 1){
-            
-        switch (modo)
+        if (modo > 1)
         {
-        case 2:
-            tam = 7;
-            break;
-        case 3:
-            tam = 9;
-            break;
-        default:
-            break;
-        }
-        cout << "     " ;
 
-         for (int j = 0; j < tamanho_palavra; j++)
-        {
-         size_t found = palavras_chaves[1].find(historico[i+tam].at(j));
-
-        //checa se tá na pos correta
-
-        
-            if (palavras_chaves[1].at(j) == historico[i+tam].at(j))
+            switch (modo)
             {
-                
-                cout << green << UNDERLINE << historico[i+tam].at(j) << CLOSEUNDERLINE << " ";
+            case 2:
+                tam = 7;
+                break;
+            case 3:
+                tam = 9;
+                break;
+            default:
+                break;
             }
+            cout << "     ";
+
+            for (int j = 0; j < tamanho_palavra; j++)
+            {
+                size_t found = palavras_chaves[1].find(historico[i + tam].at(j));
+
+                if (palavras_chaves[1].at(j) == historico[i + tam].at(j))
+                {
+                    cout << green << UNDERLINE << historico[i + tam].at(j) << CLOSEUNDERLINE << " ";
+                }
                 else if (found != string::npos)
-            {
-                cout << yellow << UNDERLINE << historico[i+tam].at(j) << CLOSEUNDERLINE << " ";
+                {
+                    cout << yellow << UNDERLINE << historico[i + tam].at(j) << CLOSEUNDERLINE << " ";
+                }
+                else
+                {
+                    cout << def << UNDERLINE << historico[i + tam].at(j) << CLOSEUNDERLINE << " ";
+                }
             }
-            else 
+            if (modo == 2)
             {
-                cout << def << UNDERLINE << historico[i+tam].at(j) << CLOSEUNDERLINE << " ";
-            }
-
-        
-        }
-    if (modo == 2 ){
                 cout << endl;
             }
-    }
-    if(modo > 2){
-        cout << "     " ;
-  
-         for (int j = 0; j < tamanho_palavra; j++)
-        {
-         size_t found = palavras_chaves[2].find(historico[i+2*tam].at(j));
-
-        //checa se tá na pos correta
-
-        
-            if (palavras_chaves[2].at(j) == historico[i+2*tam].at(j))
-            {
-                
-                cout << green << UNDERLINE << historico[i+2*tam].at(j) << CLOSEUNDERLINE << " ";
-            }
-                else if (found != string::npos)
-            {
-                cout << yellow << UNDERLINE << historico[i+2*tam].at(j) << CLOSEUNDERLINE << " ";
-            }
-            else 
-            {
-                cout << def << UNDERLINE << historico[i+2*tam].at(j) << CLOSEUNDERLINE << " ";
-            }
-
-        
         }
-
-    }
-    if(modo > 2){
-        cout << "     " ;
- 
-         for (int j = 0; j < tamanho_palavra; j++)
+        if (modo > 2)
         {
-         size_t found = palavras_chaves[3].find(historico[i+3*tam].at(j));
+            cout << "     ";
 
-        //checa se tá na pos correta
-
-        
-            if (palavras_chaves[3].at(j) == historico[i+3*tam].at(j))
+            for (int j = 0; j < tamanho_palavra; j++)
             {
-                
-                cout << green << UNDERLINE << historico[i+3*tam].at(j) << CLOSEUNDERLINE << " ";
-            }
+                size_t found = palavras_chaves[2].find(historico[i + 2 * tam].at(j));
+
+                if (palavras_chaves[2].at(j) == historico[i + 2 * tam].at(j))
+                {
+                    cout << green << UNDERLINE << historico[i + 2 * tam].at(j) << CLOSEUNDERLINE << " ";
+                }
                 else if (found != string::npos)
-            {
-                cout << yellow << UNDERLINE << historico[i+3*tam].at(j) << CLOSEUNDERLINE << " ";
+                {
+                    cout << yellow << UNDERLINE << historico[i + 2 * tam].at(j) << CLOSEUNDERLINE << " ";
+                }
+                else
+                {
+                    cout << def << UNDERLINE << historico[i + 2 * tam].at(j) << CLOSEUNDERLINE << " ";
+                }
             }
-            else 
-            {
-                cout << def << UNDERLINE << historico[i+3*tam].at(j) << CLOSEUNDERLINE << " ";
-            }
-
-        
         }
-        cout << endl;
+        if (modo > 2)
+        {
+            cout << "     ";
+
+            for (int j = 0; j < tamanho_palavra; j++)
+            {
+                size_t found = palavras_chaves[3].find(historico[i + 3 * tam].at(j));
+
+                if (palavras_chaves[3].at(j) == historico[i + 3 * tam].at(j))
+                {
+                    cout << green << UNDERLINE << historico[i + 3 * tam].at(j) << CLOSEUNDERLINE << " ";
+                }
+                else if (found != string::npos)
+                {
+                    cout << yellow << UNDERLINE << historico[i + 3 * tam].at(j) << CLOSEUNDERLINE << " ";
+                }
+                else
+                {
+                    cout << def << UNDERLINE << historico[i + 3 * tam].at(j) << CLOSEUNDERLINE << " ";
+                }
+            }
+            cout << endl;
+        }
     }
-    }
-    
+
     cout << endl
          << endl
          << endl;
 }
 
-bool Tabuleiro::endgame(int acertos, vector<string> palavras_chaves, int modo, int tentativas, int  num_chutes)
+bool Tabuleiro::endgame(int acertos, vector<string> palavras_chaves, int modo, int tentativas, int num_chutes)
 {
-    if((modo == 3 && acertos == 4) || (modo == 2 && acertos == 2) || (modo == 1 && acertos == 1)){
-    cout << "Você ganhou!" << endl;
-    return true;
+    if ((modo == 3 && acertos == 4) || (modo == 2 && acertos == 2) || (modo == 1 && acertos == 1))
+    {
+        cout << "Você ganhou!" << endl;
+        return true;
     }
-    else if (tentativas ==  num_chutes+1){
+    else if (tentativas == num_chutes)
+    {
         switch (modo)
         {
         case 1:
             cout << "Game over! - A palavra correta era: " << green << palavras_chaves[0] << def << "." << endl;
             break;
         case 2:
-            cout << "Game over! - As palavras corretam eram: " << green << palavras_chaves[0] << def << " e " << green << palavras_chaves[1] << "."<< endl;
+            cout << "Game over! - As palavras corretam eram: " << green << palavras_chaves[0] << def << " e " << green << palavras_chaves[1] << "." << endl;
             break;
 
         case 3:
-            cout << "Game over! - As palavras corretam eram: " << green << palavras_chaves[0] << def << ", " << green << palavras_chaves[1] << def << ", " << green << palavras_chaves[2] << def << " e " << green << palavras_chaves[1] << def << "." <<endl;
+            cout << "Game over! - As palavras corretam eram: " << green << palavras_chaves[0] << def << ", " << green << palavras_chaves[1] << def << ", " << green << palavras_chaves[2] << def << " e " << green << palavras_chaves[1] << def << "." << endl;
             break;
         default:
             break;
         }
-    return false;
-    } else return false;
+        return false;
+    }
+    else
+        return false;
 }
 
 int Tabuleiro::computa_tentativas(int tentativas)
-{   
+{
     tentativas = tentativas + 1;
     return tentativas;
 }
@@ -236,25 +220,21 @@ void Tabuleiro::imprime_tutorial()
     cout << "se não está presente." << endl;
     cout << "Agora selecione um modo de jogo para começar." << endl;
     cout << "-----------------------------------------------------------" << endl;
-
-
 }
 
-
-
 void Tabuleiro::menu_principal()
-{   
+{
     cout << def << "-----------------------------------------------------------" << endl;
     cout << "Menu principal" << endl;
     cout << "Selecione uma opção: " << endl;
     cout << "1. Ver tutorial" << endl;
     cout << "2. Selecionar modo e iniciar jogo" << endl;
     cout << "-----------------------------------------------------------" << endl;
-
 }
 
-int Tabuleiro::selecionar_modo(){
-    
+int Tabuleiro::selecionar_modo()
+{
+
     int modo;
 
     cout << "Modos de jogo: " << endl;
@@ -263,19 +243,19 @@ int Tabuleiro::selecionar_modo(){
     cout << "Modo selecionado: " << modo << endl;
     cout << "Iniciando jogo: " << endl;
 
-    
     return modo;
 }
 
-bool Tabuleiro::jogar_novamente(){
+bool Tabuleiro::jogar_novamente()
+{
     char decisao;
-    cout << "Deseja jogar novamente? (Y/N)" << endl; 
+    cout << "Deseja jogar novamente? (Y/N)" << endl;
     cin >> decisao;
 
-    if(decisao == 'Y'){
+    if (decisao == 'Y')
+    {
         return true;
     }
     else
         return false;
 }
-

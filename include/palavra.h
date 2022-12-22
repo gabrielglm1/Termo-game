@@ -37,6 +37,10 @@ public:
          */
     bool acertou(string guess, string palavra_chave);
 
+        /**
+         * @brief Adiciona uma palavra ao dicionário, caso o usuário deseje.
+         * @param ausente Palavra não encontrada no dicionário.
+        */
     void add_palavra(string ausente);
 };
 

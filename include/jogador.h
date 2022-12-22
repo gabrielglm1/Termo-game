@@ -14,6 +14,10 @@ class Jogador{
 
     public:
         /**
+        * @brief Construtor padrão, inicia o placar zerado.
+        */
+        Jogador();
+        /**
         * @brief Construtor da classe.
         */
         Jogador(int pontuacao);

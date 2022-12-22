@@ -13,4 +13,9 @@ class ErroDeStringExcecao : public ErroDeJogoExcecao {
     virtual const char* what() const noexcept;
 };
 
+class ErroConstrutorInvalido : public ErroDeJogoExcecao {
+ public:
+    virtual const char* what() const noexcept;
+};
+
 #endif //  PDS2_EXCECOES_H
