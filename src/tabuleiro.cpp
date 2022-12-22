@@ -19,7 +19,7 @@ Color::Modifier def(Color::FG_DEFAULT);
 
 using namespace std;
 
-int tam = 5;
+int tamanho_palavra = 5;
 
 string Tabuleiro::caps_lock(std::string& str)
 {
@@ -37,15 +37,15 @@ Tabuleiro::Tabuleiro(int tentativas)
     }
 }
 
-void Tabuleiro::preenche(string guess, int tentativas_realizadas, bool tab1, bool tab2, bool tab3, bool tab4)
+void Tabuleiro::preenche(string guess, int tentativas_realizadas, bool tab1, bool tab2, bool tab3, bool tab4, int num_chutes)
 {   
     guess = caps_lock(guess);
 
    // historico.insert(historico.begin(), guess);
     for (int i = 0; i < 4; i++){
     if ((!tab1 && (i == 0)) || (!tab2 && (i == 1)) || (!tab3 && (i == 2)) || (!tab4 && (i == 3))){
-    //historico.insert(historico.begin() + (6*i) + tentativas_realizadas, guess);
-    historico[(i*6)+tentativas_realizadas].replace(historico[(i*6)+tentativas_realizadas].begin(),historico[(i*6)+tentativas_realizadas].end(),guess);
+    //historico.insert(historico.begin() + (tam*i) + tentativas_realizadas, guess);
+    historico[(i*num_chutes)+tentativas_realizadas].replace(historico[(i*num_chutes)+tentativas_realizadas].begin(),historico[(i*num_chutes)+tentativas_realizadas].end(),guess);
     }
     //historico.erase(historico.end());   
     }
@@ -58,7 +58,7 @@ void Tabuleiro::imprime_atual(vector <string> palavras_chaves, int tentativas_re
     for (int i = 0; i < tentativas; i++)
     {
         
-        for (int j = 0; j < tam; j++)
+        for (int j = 0; j < tamanho_palavra; j++)
         {
          size_t found = palavras_chaves[0].find(historico[i].at(j));
 
@@ -85,29 +85,41 @@ void Tabuleiro::imprime_atual(vector <string> palavras_chaves, int tentativas_re
                 cout << endl;
             }
         // Caso for dueto ou quarteto
-
+        int tam = 6;
         if(modo > 1){
+            
+        switch (modo)
+        {
+        case 2:
+            tam = 7;
+            break;
+        case 3:
+            tam = 9;
+            break;
+        default:
+            break;
+        }
         cout << "     " ;
 
-         for (int j = 0; j < tam; j++)
+         for (int j = 0; j < tamanho_palavra; j++)
         {
-         size_t found = palavras_chaves[1].find(historico[i+6].at(j));
+         size_t found = palavras_chaves[1].find(historico[i+tam].at(j));
 
         //checa se tá na pos correta
 
         
-            if (palavras_chaves[1].at(j) == historico[i+6].at(j))
+            if (palavras_chaves[1].at(j) == historico[i+tam].at(j))
             {
                 
-                cout << green << UNDERLINE << historico[i+6].at(j) << CLOSEUNDERLINE << " ";
+                cout << green << UNDERLINE << historico[i+tam].at(j) << CLOSEUNDERLINE << " ";
             }
                 else if (found != string::npos)
             {
-                cout << yellow << UNDERLINE << historico[i+6].at(j) << CLOSEUNDERLINE << " ";
+                cout << yellow << UNDERLINE << historico[i+tam].at(j) << CLOSEUNDERLINE << " ";
             }
             else 
             {
-                cout << def << UNDERLINE << historico[i+6].at(j) << CLOSEUNDERLINE << " ";
+                cout << def << UNDERLINE << historico[i+tam].at(j) << CLOSEUNDERLINE << " ";
             }
 
         
@@ -119,25 +131,25 @@ void Tabuleiro::imprime_atual(vector <string> palavras_chaves, int tentativas_re
     if(modo > 2){
         cout << "     " ;
   
-         for (int j = 0; j < tam; j++)
+         for (int j = 0; j < tamanho_palavra; j++)
         {
-         size_t found = palavras_chaves[2].find(historico[i+12].at(j));
+         size_t found = palavras_chaves[2].find(historico[i+2*tam].at(j));
 
         //checa se tá na pos correta
 
         
-            if (palavras_chaves[2].at(j) == historico[i+12].at(j))
+            if (palavras_chaves[2].at(j) == historico[i+2*tam].at(j))
             {
                 
-                cout << green << UNDERLINE << historico[i+12].at(j) << CLOSEUNDERLINE << " ";
+                cout << green << UNDERLINE << historico[i+2*tam].at(j) << CLOSEUNDERLINE << " ";
             }
                 else if (found != string::npos)
             {
-                cout << yellow << UNDERLINE << historico[i+12].at(j) << CLOSEUNDERLINE << " ";
+                cout << yellow << UNDERLINE << historico[i+2*tam].at(j) << CLOSEUNDERLINE << " ";
             }
             else 
             {
-                cout << def << UNDERLINE << historico[i+12].at(j) << CLOSEUNDERLINE << " ";
+                cout << def << UNDERLINE << historico[i+2*tam].at(j) << CLOSEUNDERLINE << " ";
             }
 
         
@@ -147,25 +159,25 @@ void Tabuleiro::imprime_atual(vector <string> palavras_chaves, int tentativas_re
     if(modo > 2){
         cout << "     " ;
  
-         for (int j = 0; j < tam; j++)
+         for (int j = 0; j < tamanho_palavra; j++)
         {
-         size_t found = palavras_chaves[3].find(historico[i+18].at(j));
+         size_t found = palavras_chaves[3].find(historico[i+3*tam].at(j));
 
         //checa se tá na pos correta
 
         
-            if (palavras_chaves[3].at(j) == historico[i+18].at(j))
+            if (palavras_chaves[3].at(j) == historico[i+3*tam].at(j))
             {
                 
-                cout << green << UNDERLINE << historico[i+18].at(j) << CLOSEUNDERLINE << " ";
+                cout << green << UNDERLINE << historico[i+3*tam].at(j) << CLOSEUNDERLINE << " ";
             }
                 else if (found != string::npos)
             {
-                cout << yellow << UNDERLINE << historico[i+18].at(j) << CLOSEUNDERLINE << " ";
+                cout << yellow << UNDERLINE << historico[i+3*tam].at(j) << CLOSEUNDERLINE << " ";
             }
             else 
             {
-                cout << def << UNDERLINE << historico[i+18].at(j) << CLOSEUNDERLINE << " ";
+                cout << def << UNDERLINE << historico[i+3*tam].at(j) << CLOSEUNDERLINE << " ";
             }
 
         
@@ -179,13 +191,13 @@ void Tabuleiro::imprime_atual(vector <string> palavras_chaves, int tentativas_re
          << endl;
 }
 
-bool Tabuleiro::endgame(int acertos, vector<string> palavras_chaves, int modo, int tentativas)
+bool Tabuleiro::endgame(int acertos, vector<string> palavras_chaves, int modo, int tentativas, int  num_chutes)
 {
     if((modo == 3 && acertos == 4) || (modo == 2 && acertos == 2) || (modo == 1 && acertos == 1)){
     cout << "Você ganhou!" << endl;
     return true;
     }
-    else if (tentativas ==  6){
+    else if (tentativas ==  num_chutes+1){
         switch (modo)
         {
         case 1:

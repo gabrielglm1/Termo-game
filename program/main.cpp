@@ -20,7 +20,7 @@ int main(){
     
     while(1){
         
-        Tabuleiro tabuleiro(6);
+        Tabuleiro tabuleirinho(6);
         int n_tentativas = 0, acertos = 0;
         Palavra palavra;
         vector <string> palavras_chaves = palavra.get_palavra();
@@ -32,7 +32,7 @@ int main(){
         cout << "A palavra3 é: " << palavras_chaves[2] <<endl;
         cout << "A palavra4 é: " << palavras_chaves[3] <<endl;
 
-        tabuleiro.menu_principal();
+        tabuleirinho.menu_principal();
 
         char opcao; 
         cin >> opcao;
@@ -42,12 +42,27 @@ int main(){
         switch (opcao){
                 
         case '1':
-            tabuleiro.imprime_tutorial();
+            tabuleirinho.imprime_tutorial();
         case '2':
 
          break;
      }
-        modo = tabuleiro.selecionar_modo();
+        
+        modo = tabuleirinho.selecionar_modo();
+        int num_chutes = 6;
+        switch (modo)
+        {
+        case 2:
+            num_chutes = 7;
+            break;
+        case 3:
+            num_chutes = 9;
+            break;
+        
+        default:
+            break;
+        }
+        Tabuleiro tabuleiro(num_chutes);
 
         tabuleiro.imprime_atual(palavras_chaves, n_tentativas, modo);
         cout << "Faça a primeira jogada " << endl;
@@ -64,7 +79,7 @@ int main(){
             palavra.add_palavra(guess);  
         }
         else{
-            tabuleiro.preenche(guess, n_tentativas, tab1, tab2, tab3, tab4);
+            tabuleiro.preenche(guess, n_tentativas, tab1, tab2, tab3, tab4, num_chutes);
             tabuleiro.imprime_atual(palavras_chaves, n_tentativas, modo);
             n_tentativas = tabuleiro.computa_tentativas(n_tentativas);
 
@@ -74,7 +89,7 @@ int main(){
         cout << "Tentativas realizadas: " << n_tentativas << endl;
 
     for (int i = 0; i < 4; i++){
-            if (palavra.acertou(guess, palavras_chaves[i]) && (n_tentativas < 6)){
+            if (palavra.acertou(guess, palavras_chaves[i]) && (n_tentativas <= num_chutes)){
                 acertos+=1; 
                 if (i == 0){
                     tab1 = true;
@@ -90,7 +105,7 @@ int main(){
                 }  
         }
         }
-        if (tabuleiro.endgame(acertos, palavras_chaves, modo, n_tentativas)){
+        if (tabuleiro.endgame(acertos, palavras_chaves, modo, n_tentativas, num_chutes)){
             jogador.atualiza_pontuacao();
             cout << "Placar: " << jogador.get_pontuacao() << endl;
             break;

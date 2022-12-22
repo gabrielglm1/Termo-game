@@ -31,7 +31,7 @@ public:
      * @param tentativas_realizadas Nº de tentativas que já foram feitas.
      *
      */
-    void preenche(string guess, int tentativas_realizadas, bool tab1, bool tab2, bool tab3, bool tab4);
+    void preenche(string guess, int tentativas_realizadas, bool tab1, bool tab2, bool tab3, bool tab4, int num_chutes);
     /**
      * @brief Inicializa o menu.
      *
@@ -56,7 +56,7 @@ public:
      * @param palavra_chave Se o usuário perdeu, informa qual era a resposta.
      *
      */
-    bool endgame(int acertos, vector<string> palavras_chaves, int modo, int tentativas);
+    bool endgame(int acertos, vector<string> palavras_chaves, int modo, int tentativas, int  num_chutes);
     /**
      * @brief Atualiza as tentativas realizadas.
      * @param n_tentativas Tentativas realizadas até o momento.
