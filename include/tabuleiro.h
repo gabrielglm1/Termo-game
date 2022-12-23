@@ -89,6 +89,8 @@ public:
      *
      */
     string caps_lock(std::string &str);
+
+    int get_tentativas();
 };
 
 #endif

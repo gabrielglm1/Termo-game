@@ -5,6 +5,7 @@
 #include "tabuleiro.h"
 #include "palavra.h"
 #include "cores.h"
+#include "excecoes.h"
 #include <algorithm>
 #include <vector>
 
@@ -23,6 +24,9 @@ int tamanho_palavra = 5;
 
 string Tabuleiro::caps_lock(std::string &str)
 {
+    if (str.size() != 5){
+        throw ErroParametroInvalido();
+    }
     std::transform(str.begin(), str.end(), str.begin(), ::toupper);
     return str;
 }
@@ -32,6 +36,9 @@ Tabuleiro::Tabuleiro(){
 
 Tabuleiro::Tabuleiro(int tentativas)
 {
+    if (tentativas <1){
+        throw ErroParametroInvalido();
+    }
     this->tentativas = tentativas;
 
     for (int i = 0; i <= 4 * tentativas; i++)
@@ -203,6 +210,9 @@ bool Tabuleiro::endgame(int acertos, vector<string> palavras_chaves, int modo, i
 
 int Tabuleiro::computa_tentativas(int tentativas)
 {
+    if (tentativas < 0){
+        throw ErroParametroInvalido();
+    }
     tentativas = tentativas + 1;
     return tentativas;
 }
@@ -258,4 +268,8 @@ bool Tabuleiro::jogar_novamente()
     }
     else
         return false;
+}
+
+int Tabuleiro::get_tentativas(){
+    return tentativas;
 }

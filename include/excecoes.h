@@ -18,4 +18,9 @@ class ErroConstrutorInvalido : public ErroDeJogoExcecao {
     virtual const char* what() const noexcept;
 };
 
+class ErroParametroInvalido : public std::exception {
+ public:
+    virtual const char* what() const noexcept;
+};
+
 #endif //  PDS2_EXCECOES_H

@@ -13,3 +13,7 @@ const char* ErroDeStringExcecao::what() const noexcept {
 const char* ErroConstrutorInvalido::what() const noexcept {
   return "Essa inicialização não é permitida!";
 }
+
+const char* ErroParametroInvalido::what() const noexcept {
+  return "Palavra não encontrada no dicionário!";
+}
