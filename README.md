@@ -31,7 +31,7 @@ Lucas Vasconcelos <br>
   Critério de aceitação: Deve haver uma opção para adicionar a palavra ao dicionario caso ele não a possua.
   
   5- como jogador do termo, quero que o jogo tenha um tutorial para que eu não fique perdido
-  Critério de aceitação: Logo no início do jogo o usuário deve ser perguntado se deseja ler um tutorial do jogo, ele pode confirmar pressionando enter.
+  Critério de aceitação: Logo no início do jogo o usuário deve ser perguntado se deseja ler um tutorial do jogo, ele pode confirmar pressionando 1.
   
   6- como um jogador, quero que o jogo me forneça uma pontuação para poder compartilhar com meus amigos
   Critério de aceitação: Após acertar/errar o placar será atualizado e exibido na tela. 
