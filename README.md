@@ -40,7 +40,9 @@ Lucas Vasconcelos <br>
 <h4 align="center">
 :construction: Detalhamento do Projeto :construction:
 </h4>
-Utilize os seguintes comandos: 
+<h1> INSTRUÇÕES </h1> 
+Para jogar, certifique-se de digitar as palavras em CAIXA ALTA, assim como estão no dicionário. 
+Utilize os seguintes comandos:  
 
 make - compilar 
 make run - executar
