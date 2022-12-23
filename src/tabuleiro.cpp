@@ -173,9 +173,9 @@ void Tabuleiro::imprime_atual(vector<string> palavras_chaves, int tentativas_rea
          << endl;
 }
 
-bool Tabuleiro::endgame(int acertos, vector<string> palavras_chaves, int modo, int tentativas, int num_chutes)
+bool Tabuleiro::endgame(int acertos, vector<string> palavras_chaves, int modo, int tentativas, int num_chutes, bool tab1, bool tab2, bool tab3, bool tab4)
 {
-    if ((modo == 3 && acertos == 4) || (modo == 2 && acertos == 2) || (modo == 1 && acertos == 1))
+    if (((modo == 3 && acertos == 4)) || (((modo == 2) && (tab1 == true) && (tab2 == true) && (acertos == 2))) || ((modo == 1) && (tab1 == true)))
     {
         cout << "Você ganhou!" << endl;
         return true;
@@ -250,18 +250,21 @@ int Tabuleiro::selecionar_modo()
 
 bool Tabuleiro::jogar_novamente()
 {
-    char decisao;
+    string decisao;
     cout << "Deseja jogar novamente? (Y/N)" << endl;
 
-   try
+  try
     {
         cin >> decisao;
+        if(decisao.size() > 2){
+            throw OpcaoInvalidaExcecao();
+        }
     }
-    catch (std::out_of_range const&)    {
-        throw OpcaoInvalidaExcecao();
+    catch (EntradaInvalidaExcecao const& e)    {
+        std::cerr << e.what() << endl;
     }
     
-    if (decisao == 'Y')
+    if (decisao == "Y")
     {
         return true;
     }

@@ -14,16 +14,12 @@ string Jogador::jogada()
 
     string jogada;
 
-    try
-    {
+
     cin >> jogada;
-    }
-    catch (std::out_of_range const&)
-    {
-       throw EntradaInvalidaExcecao();
+    if(jogada.size() > 5){
+        throw EntradaInvalidaExcecao();
     }
     
-
     return jogada;
 }
 string Jogador::get_guess()

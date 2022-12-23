@@ -93,7 +93,7 @@ int main(){
             for (int i = 0; i < 4; i++)
             {
                 if (palavra.acertou(guess, palavras_chaves[i]) && (tentativas_realizadas <= num_chutes))
-                {
+                {   
                     acertos += 1;
                     switch (i)
                     {
@@ -114,7 +114,7 @@ int main(){
                 }
             }
             
-            if (tabuleiro.endgame(acertos, palavras_chaves, modo, tentativas_realizadas, num_chutes))
+            if (tabuleiro.endgame(acertos, palavras_chaves, modo, tentativas_realizadas, num_chutes, tab1, tab2, tab3, tab4))
             {
                 jogador.atualiza_pontuacao();
                 cout << "Placar: " << jogador.get_pontuacao() << endl;

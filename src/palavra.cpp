@@ -103,9 +103,12 @@ void Palavra::add_palavra(string ausente)
     try
     {
         cin >> option;
+        if(option.size() > 2){
+            throw OpcaoInvalidaExcecao();
+        }
     }
-    catch (std::out_of_range const&)    {
-        throw EntradaInvalidaExcecao();
+    catch (OpcaoInvalidaExcecao const& e)    {
+        std::cerr << e.what() << endl;
     }
     
     

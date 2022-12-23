@@ -31,11 +31,3 @@ TEST_CASE("Testando a função computa_tentativas"){
     Tabuleiro Tabuleiro_Teste5 = Tabuleiro(9);
     CHECK_THROWS(Tabuleiro_Teste5.computa_tentativas(-3));
 }
-
-TEST_CASE(""){
-
-}
-
-TEST_CASE(""){
-
-}
