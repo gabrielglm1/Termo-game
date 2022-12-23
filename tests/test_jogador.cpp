@@ -1,30 +1,12 @@
 #include "doctest.h"
 #include "jogador.h"
 
-TEST_CASE("Testando o construtor e os getters"){
+TEST_CASE("Testando o construtor, função de atualizar e o get"){
 
-    // Jogador jogador;
-    // CHECK(jogador.get_pontuacao() == 0);
+    Jogador jogador;
+    CHECK_EQ(jogador.get_pontuacao(), 0);
 
-    // Jogador jogador2 = Jogador(10);
-    // CHECK(jogador.get_pontuacao() == 0);
-
-    // CHECK_THROWS(Jogador(-10));
-
-}
-
-TEST_CASE(""){
-
-}
-
-TEST_CASE(""){
-
-}
-
-TEST_CASE(""){
-
-}
-
-TEST_CASE(""){
+    jogador.atualiza_pontuacao(); 
+    CHECK_EQ(jogador.get_pontuacao(), 1);
 
 }

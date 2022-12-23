@@ -1,3 +1,4 @@
+
 #ifndef JOGADOR_H
 #define JOGADOR_H  
 
@@ -14,13 +15,9 @@ class Jogador{
 
     public:
         /**
-        * @brief Construtor padrão, inicia o placar zerado.
-        */
-        Jogador();
-        /**
         * @brief Construtor da classe.
         */
-        Jogador(int pontuacao);
+        Jogador();
         /**
         * @brief Realiza um novo palpite.
         */

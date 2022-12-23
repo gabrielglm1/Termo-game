@@ -5,38 +5,17 @@
 #include <algorithm>
 #include "palavra.h"
 #include "tabuleiro.h"
+#include "excecoes.h"
+#include <exception>
 
 using namespace std;
 
 Palavra::Palavra() {}
 
-int TAM_DICIONARIO = 2935; 
+int TAM_DICIONARIO = 1000; 
 
 vector<string> Palavra::get_palavra()
 {
-
-    // int num_linhas = 0;
-
-    // ifstream ifile("dicionario.txt");
-    // while(getline(file, line)){
-    //     ++num_linhas;
-    //     }
-
-    // ifile.clear();
-    // ifile.seekg(0);
-
-    // srand(time(0));
-
-    // int aleatorio[4];
-
-    // for(int i = 0; i < 4; i++){
-    //     aleatorio[i] = rand() % num_linhas;
-
-    // }
-    // for(int i = 0; i < 4; i++){
-    //     cout << "Random" << i << ": " << aleatorio[i] << endl;
-
-    // }
         int random1, random2, random3, random4;
 
     srand(time(0));
@@ -47,7 +26,7 @@ vector<string> Palavra::get_palavra()
             random3 = rand() % TAM_DICIONARIO;
             random4 = rand() % TAM_DICIONARIO;
 
-            if(random1 != random2 != random3 != random4){
+            if((random1 != random2 && random3 && random4) && (random2 != random3 && random4) && (random3 != random4)){
                 break;
         } 
         }
@@ -120,8 +99,16 @@ void Palavra::add_palavra(string ausente)
     std::cout << "Deseja adicionar essa palavra ao banco de palavras? (Y/N)" << endl;
 
     string option;
-    std::cin >> option;
 
+    try
+    {
+        cin >> option;
+    }
+    catch (std::out_of_range const&)    {
+        throw EntradaInvalidaExcecao();
+    }
+    
+    
     if (option == "Y")
     {
         ofstream outfile;

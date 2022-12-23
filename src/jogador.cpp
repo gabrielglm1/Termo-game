@@ -13,8 +13,16 @@ string Jogador::jogada()
 {
 
     string jogada;
+
+    try
+    {
     cin >> jogada;
-    // cout << jogada << endl;
+    }
+    catch (std::out_of_range const&)
+    {
+       throw EntradaInvalidaExcecao();
+    }
+    
 
     return jogada;
 }
