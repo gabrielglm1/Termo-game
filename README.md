@@ -21,7 +21,7 @@ Lucas Vasconcelos <br>
   1- como jogador do Termo quero que o jogo me dê dicas para eu poder acertar as palavras.
   Critério de aceitação: Quando o usuário digitar dica, ela deve aparecer. 
   
-  2- Gostaria de que, como usuário do jogo, as palavras chave sempre sejam aleatorias, para que se torne mais desafiador e um padrão não seja encontrado.
+  2- Gostaria de que, como usuário do jogo, as palavras chave sempre sejam aleatorias, para que se torne mais desafiador e um padrão não seja encontrado.
   Critério de aceitação: As palavras selecionadas do dicionário devem ser selecionadas com base num número aleatorio entre zero e o número de linhas do dicionário. 
   
   3- Como jogador quero que tenha como selecionar o modo de jogo, para ter mais variedade de opções no jogo.
@@ -76,28 +76,20 @@ Tabuleiro();
     
     Tabuleiro(int tentativas): Cria um tabuleiro, com um vector chamado historico com (4* tentativas )"palavras" vazias de 5 letras ("     "), o vector possue espaço então para 4*numero de tentativas palavras que é o maximo de palavras que podem existir no historico caso seja um quarteto. Ele se divide em 4 tabuleiros de até (n  tentativas) palavras, sendo que o tamanho
     
-    void preenche(string guess, int tentativas_realizadas, bool tab1, bool tab2, bool tab3, bool tab4, int num_chutes): 
+    void preenche(string guess, int tentativas_realizadas, bool tab1, bool tab2, bool tab3, bool tab4, int num_chutes) - Inicializa um vector com as jogadas realizadas pelo jogador, inicialmente ele inicia o vector cheio de espaços vazios, os quais serão preenchidos a medida que o jogador faz palpites. 
     
-    void menu_principal(); Sem tempo
+    void menu_principal() - Imprime um pequeno menu onde o usuário pode decidir se quer ler o tutorial ou escolher o modo de jogo. 
    
-    void imprime_atual(vector <string> palavras_chaves, int tentativas_realizadas, int modo): sem tempo 
-    
-    
-    bool endgame(int acertos, vector<string> palavras_chaves, int modo, int tentativas, int  num_chutes, bool tab1, bool tab2, bool tab3, bool tab4); sem tempo
-    
-    int computa_tentativas(int n_tentativas);
+    void imprime_atual(vector <string> palavras_chaves, int tentativas_realizadas, int modo) - Essa função é o coração do jogo, basicamente a que mais deu trabalho fazer funcionar.
 
-    void imprime_tutorial();
+    bool endgame(int acertos, vector<string> palavras_chaves, int modo, int tentativas, int  num_chutes, bool tab1, bool tab2, bool tab3, bool tab4) - Essa função faz todo o trabalho de verificar se o usuário ganhou ou não, avaliando de maneira específica para cada um dos modos de jogo, e sabendo se os tabuleiros já foram completos ou não, e tendo as palavras chaves para poder revelar caso o usuário tenha perdido, para que possa descobrir quais seriam os palpites corretos. 
 
-    int selecionar_modo();
-
-    bool jogar_novamente();
-
-    int get_tentativas();
-     int computa_tentativas(int n_tentativas) - Faz o acréscimo das tentativas após cada jogada. 
+    int computa_tentativas(int n_tentativas) - Faz o acréscimo das tentativas após cada jogada. 
 
     void imprime_tutorial() - Imprime um pequeno tutorial que pode ensinar o usuário a jogar. 
 
     int selecionar_modo() - Essa função é responsável por direcionar o usuário a um menu onde ele escolher dentre os 3 modos de jogo possíveis.
 
     bool jogar_novamente() - Essa função colhe decisão do jogador de jogar novamente ou não, logo após ter acertado as palavras do modo atual.
+
+    Conclusões do projeto: Esse projeto foi muito satisfatório de desenvolver, pois a ideia de praticar com um joguinho popular deixou nossa equipe entusiasmada, e estamos contentes com o resultado final, apesar de sabermos que não está 100%, mas mesmo esse resultado foi muito difícil de conquistar. Para uma equipe de apenas 3 pessoas desenvolver um jogo se torna muito exaustivo, combinado ao fim de semestre, tarefa quase impossível. Porém, o resultado final nos agrada e vamos levar com consideração para o resto de nossas vidas acadêmicas essa experiência vivida.  
