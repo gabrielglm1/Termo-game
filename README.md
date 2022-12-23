@@ -69,14 +69,6 @@ Classe "jogador": Responsável por criar um jogador com uma pontuação e uma jo
 
 Classe "Tabuleiro": A principal classe do nosso jogo, responsável pela logica de dicas, escrita do tabuleiro e dos "chutes" do jogador. Essa classe possue o número de tentativas possiveis para o jogador e um vector de strings chamado historico, o qual armazena todos os chutes para que possam ser impressos na tela.
 
-
-     
-        string jogada(): retorna uma string que é gerada atravez de um cin.
-      
-        void atualiza_pontuacao(): soma 1 a um inteiro chamado pontuação.
-       
-        int get_pontuacao(); retorna a pontuação do jogador.
-
 Tabuleiro();
     
     Tabuleiro(int tentativas): Cria um tabuleiro, com um vector chamado historico com (4* tentativas )"palavras" vazias de 5 letras ("     "), o vector possue espaço então para 4*numero de tentativas palavras que é o maximo de palavras que podem existir no historico caso seja um quarteto. Ele se divide em 4 tabuleiros de até (n  tentativas) palavras, sendo que o tamanho
