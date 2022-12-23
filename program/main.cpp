@@ -29,10 +29,11 @@ int main(){
         vector<string> palavras_chaves = palavra.get_palavra();
         bool tab1 = false, tab2 = false, tab3 = false, tab4 = false;
 
-        cout << "A palavra1 é: " << palavras_chaves[0] << endl;
-        cout << "A palavra2 é: " << palavras_chaves[1] << endl;
-        cout << "A palavra3 é: " << palavras_chaves[2] << endl;
-        cout << "A palavra4 é: " << palavras_chaves[3] << endl;
+        // Utilizado somente para debug: 
+        // cout << "A palavra1 é: " << palavras_chaves[0] << endl;
+        // cout << "A palavra2 é: " << palavras_chaves[1] << endl;
+        // cout << "A palavra3 é: " << palavras_chaves[2] << endl;
+        // cout << "A palavra4 é: " << palavras_chaves[3] << endl;
 
         tabuleirinho.menu_principal();
 
