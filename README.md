@@ -74,16 +74,16 @@ Classe "Tabuleiro": A principal classe do nosso jogo, responsável pela logica d
 
 Tabuleiro();
     
-    Tabuleiro(int tentativas){}
+    Tabuleiro(int tentativas): Cria um tabuleiro, com um vector chamado historico com (4* tentativas )"palavras" vazias de 5 letras ("     "), o vector possue espaço então para 4*numero de tentativas palavras que é o maximo de palavras que podem existir no historico caso seja um quarteto. Ele se divide em 4 tabuleiros de até (n  tentativas) palavras, sendo que o tamanho
     
-    void preenche(string guess, int tentativas_realizadas, bool tab1, bool tab2, bool tab3, bool tab4, int num_chutes);
+    void preenche(string guess, int tentativas_realizadas, bool tab1, bool tab2, bool tab3, bool tab4, int num_chutes): 
     
-    void menu_principal();
+    void menu_principal(); Sem tempo
    
-    void imprime_atual(vector <string> palavras_chaves, int tentativas_realizadas, int modo);
+    void imprime_atual(vector <string> palavras_chaves, int tentativas_realizadas, int modo): sem tempo 
     
     
-    bool endgame(int acertos, vector<string> palavras_chaves, int modo, int tentativas, int  num_chutes, bool tab1, bool tab2, bool tab3, bool tab4);
+    bool endgame(int acertos, vector<string> palavras_chaves, int modo, int tentativas, int  num_chutes, bool tab1, bool tab2, bool tab3, bool tab4); sem tempo
     
     int computa_tentativas(int n_tentativas);
 
@@ -94,3 +94,10 @@ Tabuleiro();
     bool jogar_novamente();
 
     int get_tentativas();
+     int computa_tentativas(int n_tentativas) - Faz o acréscimo das tentativas após cada jogada. 
+
+    void imprime_tutorial() - Imprime um pequeno tutorial que pode ensinar o usuário a jogar. 
+
+    int selecionar_modo() - Essa função é responsável por direcionar o usuário a um menu onde ele escolher dentre os 3 modos de jogo possíveis.
+
+    bool jogar_novamente() - Essa função colhe decisão do jogador de jogar novamente ou não, logo após ter acertado as palavras do modo atual.
