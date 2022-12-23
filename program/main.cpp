@@ -14,6 +14,8 @@ Color::Modifier verm(Color::FG_BRIGHT_RED);
 
 using namespace std;
 
+
+
 int main(){
 
     cout << "Bem-vindo ao" << verm << " Termo" << endl;
@@ -22,7 +24,11 @@ int main(){
 
     while (1)
     {
-
+        //Aqui iniciamos um tabuleirinho auxiliar, e depois todas as variáveis que serão necessárias para o funcionamento do jogo, 
+        //temos 4 tabuleiros um para cada palavra que por ventura venha a ser utilziada. Eles são setados como falsos pois inicialmente
+        //não sabemos a palavra, mas assim que se acerta, eles viram true e então param de ser preenchidos. 
+        //guardamos as palavras chave num vector, para ficar mais fácil de manusear. 
+        
         Tabuleiro tabuleirinho;
         int tentativas_realizadas = 0, acertos = 0;
         Palavra palavra;
@@ -37,10 +43,13 @@ int main(){
 
         tabuleirinho.menu_principal();
 
+
+        //O modo por padrão é 1, mas a seguir temos um menu onde o usuário pode escolher qual deseja jogar. 
         char opcao;
         int modo = 1; 
         cin >> opcao;
 
+        
         switch (opcao)
         {
         case '1':
@@ -64,7 +73,7 @@ int main(){
         default:
             break;
         }
-
+        //Agora criamos o verdadeiro tabuleiro onde será jogado, com o modo selecionado pelo usuário. 
         Tabuleiro tabuleiro(num_chutes);
 
         tabuleiro.imprime_atual(palavras_chaves, tentativas_realizadas, modo);
@@ -72,7 +81,9 @@ int main(){
 
         while (1)
         {
-
+            //O jogador faz uma jogada e a palavra verifica se é válida, caso não seja, o usuário tem a opção de adicionar ela ao banco 
+            //de palavras e melhorar a experiência de jogo. 
+            //Caso esteja presente, o tabuleiro irá executar a função preenche, que mostra as dicas para o usuário, de acordo com a cor.
             string guess = jogador.jogada();
 
             if (!palavra.verifica_palavra(guess))
@@ -88,7 +99,9 @@ int main(){
                 tabuleiro.imprime_atual(palavras_chaves, tentativas_realizadas, modo);
                 tentativas_realizadas = tabuleiro.computa_tentativas(tentativas_realizadas);
             }
-
+            //Após preencher, as tentativas são computadas, e se as palavras forem acertadas, os acertos também, assim
+            //a depender do modo escolhido o tabuleiro saberá se o usuário venceu ou não. Pedindo um novo palpite enquanto não tiver
+            //ganho ou esgotado as tentativas. 
             cout << "Tentativas realizadas: " << tentativas_realizadas << endl;
 
             for (int i = 0; i < 4; i++)
@@ -114,7 +127,7 @@ int main(){
                     }
                 }
             }
-            
+            //A função endgame faz todo o trabalho de verificar para cada modo se o jogador ganhou ou não. 
             if (tabuleiro.endgame(acertos, palavras_chaves, modo, tentativas_realizadas, num_chutes, tab1, tab2, tab3, tab4))
             {
                 jogador.atualiza_pontuacao();
@@ -129,7 +142,7 @@ int main(){
 
             cout << "Faça uma nova tentativa: " << endl;
         }
-
+        //No fim, o jogador pode decidir se quer jogar de novo ou não. 
         if (!tabuleiro.jogar_novamente()){
             cout << "Placar final: " << jogador.get_pontuacao() << endl;
             break;

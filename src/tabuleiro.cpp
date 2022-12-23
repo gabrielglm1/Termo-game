@@ -23,11 +23,7 @@ using namespace std;
 //Todas as palavras no jogo tem 6 letras.
 int tamanho_palavra = 5;
 
-string Tabuleiro::caps_lock(std::string &str)
-{
-    std::transform(str.begin(), str.end(), str.begin(), ::toupper);
-    return str;
-}
+
 Tabuleiro::Tabuleiro(){
     tentativas = 6;
 }
@@ -43,7 +39,8 @@ Tabuleiro::Tabuleiro(int tentativas)
 }
 
 void Tabuleiro::preenche(string guess, int tentativas_realizadas, bool tab1, bool tab2, bool tab3, bool tab4, int num_chutes)
-{
+{   
+    //Essa lógica serve para implementarmos os 4 tabuleiros utilizando um só histórico. 
     for (int i = 0; i < 4; i++)
     {
         if ((!tab1 && (i == 0)) || (!tab2 && (i == 1)) || (!tab3 && (i == 2)) || (!tab4 && (i == 3)))
@@ -52,6 +49,9 @@ void Tabuleiro::preenche(string guess, int tentativas_realizadas, bool tab1, boo
         }
     }
 }
+//Essa função é o coração do jogo, ela avalia se para cada posição de letra do palpite ela está presente ou não e se está no lugar certo ou não,
+// se estiver certo ela pinta de verde, se não de amarelo, e se nem estiver presente permanece branco. 
+//São quatro loops pois cada tabuleiro é independente entre si, temos que separar para poder avaliar cada palavra. 
 
 void Tabuleiro::imprime_atual(vector<string> palavras_chaves, int tentativas_realizadas, int modo)
 {
@@ -167,7 +167,7 @@ void Tabuleiro::imprime_atual(vector<string> palavras_chaves, int tentativas_rea
             cout << endl;
         }
     }
-
+    // Dar os espaços para uma nova "Tela". 
     cout << endl
          << endl
          << endl;
@@ -260,7 +260,7 @@ bool Tabuleiro::jogar_novamente()
             throw OpcaoInvalidaExcecao();
         }
     }
-    catch (EntradaInvalidaExcecao const& e)    {
+    catch (OpcaoInvalidaExcecao const& e)    {
         std::cerr << e.what() << endl;
     }
     
@@ -270,4 +270,8 @@ bool Tabuleiro::jogar_novamente()
     }
     else
         return false;
+}
+
+int Tabuleiro::get_tentativas(){
+    return tentativas;
 }

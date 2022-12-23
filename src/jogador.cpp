@@ -13,18 +13,12 @@ string Jogador::jogada()
 {
 
     string jogada;
-
-
     cin >> jogada;
-    if(jogada.size() > 5){
+    if(jogada.size() != 5){
         throw EntradaInvalidaExcecao();
     }
     
     return jogada;
-}
-string Jogador::get_guess()
-{
-    return _guess;
 }
 
 void Jogador::atualiza_pontuacao()

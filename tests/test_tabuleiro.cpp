@@ -13,21 +13,15 @@ TEST_CASE("Testando o construtor"){
     CHECK_THROWS(Tabuleiro(-3));
 }
 
-TEST_CASE("Testando a função caps_lock"){
-
-    Tabuleiro Tabuleiro_Teste3 = Tabuleiro();
-    std::string palavra_teste = "lesma";
-    CHECK(Tabuleiro_Teste3.caps_lock(palavra_teste) == "LESMA");
-    
-    palavra_teste = "bonita";
-    CHECK_THROWS(Tabuleiro_Teste3.caps_lock(palavra_teste));
-}
-
 TEST_CASE("Testando a função computa_tentativas"){
 
     Tabuleiro Tabuleiro_Teste4 = Tabuleiro();
     CHECK(Tabuleiro_Teste4.computa_tentativas(6) == 7);
 
     Tabuleiro Tabuleiro_Teste5 = Tabuleiro(9);
-    CHECK_THROWS(Tabuleiro_Teste5.computa_tentativas(-3));
+    CHECK_FALSE(Tabuleiro_Teste5.computa_tentativas(-3));
+
+    Tabuleiro Tabuleiro_Teste6 = Tabuleiro();
+    CHECK_FALSE(Tabuleiro_Teste6.computa_tentativas(2) == 1);
+
 }

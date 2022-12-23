@@ -58,7 +58,7 @@ public:
      * @param modo É um número que indica qual o modo de jogo atual.
      * @param tentativas Número de palpites possíveis que depende do modo.
      * @param num_chutes Número de palpites já realizados.
-     *
+     * @param tab Recebe os 4 tabuleiros.
      */
     bool endgame(int acertos, vector<string> palavras_chaves, int modo, int tentativas, int  num_chutes, bool tab1, bool tab2, bool tab3, bool tab4);
     /**
@@ -83,13 +83,15 @@ public:
      */
     bool jogar_novamente();
 
-    // void limpa_tabuleiro();
     /**
      * @brief Converte textos para caixa alta.
      *
      */
     string caps_lock(std::string &str);
-
+    /**
+     * @brief Retorna o número de tentativas do tabuleiro atual.
+     *
+     */
     int get_tentativas();
 };
 
