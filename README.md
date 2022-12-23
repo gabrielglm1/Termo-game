@@ -40,6 +40,11 @@ Lucas Vasconcelos <br>
 <h4 align="center">
 :construction: Detalhamento do Projeto :construction:
 </h4>
+Utilize os seguintes comandos: 
+
+make - compilar 
+make run - executar
+make tests - rodar testes 
 
 Começamos o projeto conhecendo o jogo termo, que consiste de tentar acertar uma palavra com chutes e dicas como num jogo de forca. Para fazer isso, criamos as classe "palavra", classe "tabuleiro" , classe "jogador". 
 
