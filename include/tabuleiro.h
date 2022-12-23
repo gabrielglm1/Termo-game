@@ -60,7 +60,7 @@ public:
      * @param num_chutes Número de palpites já realizados.
      *
      */
-    bool endgame(int acertos, vector<string> palavras_chaves, int modo, int tentativas, int  num_chutes);
+    bool endgame(int acertos, vector<string> palavras_chaves, int modo, int tentativas, int  num_chutes, bool tab1, bool tab2, bool tab3, bool tab4);
     /**
      * @brief Atualiza as tentativas realizadas.
      * @param n_tentativas Tentativas realizadas até o momento.
